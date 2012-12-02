@@ -16,14 +16,18 @@ public class Tileset {
 	public Tileset() {
 	}
 
-	public Tileset( String source, Point tileSize ) {
+	public Tileset( String source, int tileWidth, int tileHeight ) {
 		images.add( new Image( source ) );
-		this.tileSize.set( tileSize.x, tileSize.y );
+		tileSize.set( tileWidth, tileHeight );
+	}
+
+	public Tileset( String source, Point tileSize ) {
+		this( source, tileSize.x, tileSize.y );
 	}
 
 	/**
 	 * Retrieves the bounds for the given position in this tileset.
-	 * 
+	 *
 	 * @param out
 	 *            The bounds will be written to this object.
 	 */
