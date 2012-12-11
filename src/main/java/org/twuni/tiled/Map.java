@@ -15,6 +15,13 @@ public class Map {
 	private final List<ObjectGroup> objectGroups = new ArrayList<ObjectGroup>();
 	private final List<Property> properties = new ArrayList<Property>();
 
+	private final List<Layer> layerCache = new ArrayList<Layer>();
+
+	private List<Layer> newLayerCache() {
+		layerCache.clear();
+		return layerCache;
+	}
+
 	public Layer getLayer( String layerName ) {
 		for( int i = 0; i < layers.size(); i++ ) {
 			Layer layer = layers.get( i );
@@ -30,7 +37,7 @@ public class Map {
 	}
 
 	public List<Layer> getLayersAfter( String layerName ) {
-		List<Layer> after = new ArrayList<Layer>();
+		List<Layer> after = newLayerCache();
 		boolean found = false;
 		for( int i = 0; i < layers.size(); i++ ) {
 			if( found ) {
@@ -43,7 +50,7 @@ public class Map {
 	}
 
 	public List<Layer> getLayersUntil( String layerName ) {
-		List<Layer> until = new ArrayList<Layer>();
+		List<Layer> until = newLayerCache();
 		for( int i = 0; i < layers.size(); i++ ) {
 			Layer layer = layers.get( i );
 			if( layerName.equals( layer.getName() ) ) {
