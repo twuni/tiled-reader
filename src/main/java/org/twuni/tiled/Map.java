@@ -8,6 +8,7 @@ import org.twuni.tiled.support.Point;
 public class Map {
 
 	private String orientation;
+	private boolean isometric;
 	private final Point size = new Point();
 	private final Point tileSize = new Point();
 	private final List<Tileset> tilesets = new ArrayList<Tileset>();
@@ -111,7 +112,7 @@ public class Map {
 	 *            this object.
 	 */
 	public Point getTilePosition( int x, int y, Point out ) {
-		if( isIsometric() ) {
+		if( isometric ) {
 			out.set( tileSize.x / 2 * ( size.x - 1 + x - y ), tileSize.y / 2 * ( y + x - 1 ) );
 		} else {
 			out.set( x * tileSize.x, y * tileSize.y );
@@ -153,12 +154,9 @@ public class Map {
 		return tileSize;
 	}
 
-	private boolean isIsometric() {
-		return "isometric".equals( orientation );
-	}
-
 	public void setOrientation( String orientation ) {
 		this.orientation = orientation;
+		isometric = "isometric".equals( orientation );
 	}
 
 }
